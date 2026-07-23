@@ -13,7 +13,7 @@ app.command("/revered-snake-ping", async ({ command, ack, respond }) => {
   const start = Date.now();
   await ack();
   const latency = Date.now() - start;
-  await respond({ text: `Pong!\nLatency: ${latency}ms` });
+  await respond({ text: `Who dares to summon me!\nLatency: ${latency}ms` });
 });
 
 (async () => {
@@ -38,7 +38,7 @@ app.command("/revered-snake-catfact", async ({ ack, respond }) => {
 
   try {
     const response = await axios.get("https://catfact.ninja/fact");
-    await respond({ text: `Cat Fact:\n${response.data.fact}` });
+    await respond({ text: `Here is a fact about a cat:\n${response.data.fact}` });
   } catch (err) {
     await respond({ text: "Failed to fetch a cat fact." });
   }
@@ -51,7 +51,7 @@ app.command("/revered-snake-joke", async ({ ack, respond }) => {
     const response = await axios.get("https://official-joke-api.appspot.com/random_joke");
     await respond({
       text:
-`${response.data.setup}
+` I have been commanded to joke : ${response.data.setup}
 
 ${response.data.punchline}`
     });
@@ -66,7 +66,7 @@ app.command("/revered-snake-catimg", async ({ ack, respond }) => {
   try {
     const response = await axios.get("https://api.thecatapi.com/v1/images/search");
     const catImageUrl = response.data[0].url;
-    await respond({ text: `Cat Image!:\n${catImageUrl}` });
+    await respond({ text: `Cats are from my legacy, look at them!:\n${catImageUrl}` });
   } catch (err) {
     await respond({ text: "Failed to fetch a cat image." });
   }
