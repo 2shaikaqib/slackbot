@@ -1,5 +1,6 @@
 const axios = require("axios");
 require("dotenv").config();
+axios.defaults.headers.common["User-Agent"] = "SlackBot/1.0 (Node.js)"
 
 const { App } = require("@slack/bolt");
 
@@ -63,7 +64,7 @@ app.command("/revered-snake-animecharacter", async ({ ack, respond }) => {
   await ack();
 
   try {
-    const response = await axios.get("https://jikan.moe/v4/random/characters");
+    const response = await axios.get("https://api.jikan.moe/v4/random/characters");
     const characters = response.data.data;
     await respond({ text: `Anime Character:\n${characters.name}` });
   } catch (err) {
@@ -90,8 +91,8 @@ app.command("/revered-snake-randnum", async ({ ack, respond }) => {
     const response = await axios.get("https://random.org/integers/", {
       params: {
         num: 1,
-        min: -1000000000,
-        max: 1000000000,
+        min: 1,
+        max: 100,
         col:1,
         base: 10,
         format: "plain",
