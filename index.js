@@ -1,6 +1,5 @@
 const axios = require("axios");
 require("dotenv").config();
-axios.defaults.headers.common["User-Agent"] = "SlackBot/1.0 (Node.js)"
 
 const { App } = require("@slack/bolt");
 
@@ -60,18 +59,6 @@ ${response.data.punchline}`
   }
 });
 
-app.command("/revered-snake-animecharacter", async ({ ack, respond }) => {
-  await ack();
-
-  try {
-    const response = await axios.get("https://api.jikan.moe/v4/random/characters");
-    const characters = response.data.data;
-    await respond({ text: `Anime Character:\n${characters.name}` });
-  } catch (err) {
-    await respond({ text: "Failed to fetch character." });
-  }
-});
-
 app.command("/revered-snake-catimg", async ({ ack, respond }) => {
   await ack();
 
@@ -81,26 +68,5 @@ app.command("/revered-snake-catimg", async ({ ack, respond }) => {
     await respond({ text: `Cat Image!:\n${catImageUrl}` });
   } catch (err) {
     await respond({ text: "Failed to fetch a cat image." });
-  }
-});
-
-app.command("/revered-snake-randnum", async ({ ack, respond }) => {
-  await ack();
-
-  try {
-    const response = await axios.get("https://random.org/integers/", {
-      params: {
-        num: 1,
-        min: 1,
-        max: 100,
-        col:1,
-        base: 10,
-        format: "plain",
-        rnd: "new"
-      }
-    });
-    await respond({ text: `Number!:\n${response.data.trim()}` });
-  } catch (err) {
-    await respond({ text: "Failed to fetch random number." });
   }
 });
