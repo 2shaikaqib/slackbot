@@ -39,6 +39,7 @@ app.command("/revered-snake-catfact", async ({ ack, respond }) => {
   try {
     const response = await axios.get("https://catfact.ninja/fact");
     await respond({ text: `Here is a fact about a cat:\n${response.data.fact}` });
+    response_type: "in_channel";
   } catch (err) {
     await respond({ text: "Failed to fetch a cat fact." });
   }
@@ -55,6 +56,7 @@ app.command("/revered-snake-joke", async ({ ack, respond }) => {
 
 ${response.data.punchline}`
     });
+    response_type: "in_channel";
   } catch (err) {
     await respond({ text: "Failed to fetch a joke." });
   }
@@ -67,6 +69,7 @@ app.command("/revered-snake-catimg", async ({ ack, respond }) => {
     const response = await axios.get("https://api.thecatapi.com/v1/images/search");
     const catImageUrl = response.data[0].url;
     await respond({ text: `Cats are from my legacy, look at them!:\n${catImageUrl}` });
+    response_type: "in_channel"
   } catch (err) {
     await respond({ text: "Failed to fetch a cat image." });
   }
