@@ -28,7 +28,8 @@ app.command("/revered-snake-help", async ({ ack, respond }) => {
 `Available Commands:
 /revered-snake-ping - Check bot latency
 /revered-snake-catfact - Get a cat fact
-/revered-snake-joke - makes a joke :D`
+/revered-snake-joke - makes a joke :D
+/revered-snake-catimg - gives cute cat url image`
   });
 });
 
