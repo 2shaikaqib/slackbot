@@ -58,3 +58,48 @@ ${response.data.punchline}`
     await respond({ text: "Failed to fetch a joke." });
   }
 });
+
+app.command("/revered-snake-animecharacter", async ({ ack, respond }) => {
+  await ack();
+
+  try {
+    const response = await axios.get("https://jikan.moe/v4/random/characters");
+    const characters = response.data.data;
+    await respond({ text: `Anime Character:\n${characters.name}` });
+  } catch (err) {
+    await respond({ text: "Failed to fetch character." });
+  }
+});
+
+app.command("/revered-snake-catimg", async ({ ack, respond }) => {
+  await ack();
+
+  try {
+    const response = await axios.get("https://api.thecatapi.com/v1/images/search");
+    const catImageUrl = response.data[0].url;
+    await respond({ text: `Cat Image!:\n${catImageUrl}` });
+  } catch (err) {
+    await respond({ text: "Failed to fetch a cat image." });
+  }
+});
+
+app.command("/revered-snake-randnum", async ({ ack, respond }) => {
+  await ack();
+
+  try {
+    const response = await axios.get("https://random.org/integers/", {
+      params: {
+        num: 1,
+        min: -1000000000,
+        max: 1000000000,
+        col:1,
+        base: 10,
+        format: "plain",
+        rnd: "new"
+      }
+    });
+    await respond({ text: `Number!:\n${response.data.trim()}` });
+  } catch (err) {
+    await respond({ text: "Failed to fetch random number." });
+  }
+});
